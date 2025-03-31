@@ -1,32 +1,6 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Fetch Code') {
-            steps {
-                echo 'Fetching latest code...'
-                bat 'git pull origin main'
-            }
-        }
-
-        stage('Deploy to IIS') {
-            steps {
-                echo 'Deploying index.html to IIS...'
-                bat '''
-                if not exist "%WORKSPACE%\\index.html" (
-                    echo ERROR: index.html not found!
-                    exit /b 1
-                )
-                robocopy "%WORKSPACE%" "C:\\inetpub\\wwwroot\\jenkins-sites" index.html /NFL /NDL /NJH /NJS /NC /NS /NP /R:5 /W:5
-                '''
-            }
-        }
-
-        stage('Restart IIS') {
-            steps {
-                echo 'Restarting IIS...'
-                bat 'powershell -Command "Start-Process iisreset -Verb RunAs"'
-            }
-        }
+stage('Debug Workspace') {
+    steps {
+        echo 'Checking files in workspace...'
+        bat 'dir /s /b'
     }
 }
