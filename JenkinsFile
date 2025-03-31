@@ -16,12 +16,13 @@ pipeline {
                 '''
             }
         }
-        stage('Restart IIS') {
-            steps {
-                echo 'Restarting IIS...'
-                bat 'iisreset /restart'
-            }
-        }
+       stage('Restart IIS') {
+    steps {
+        echo 'Restarting IIS...'
+        bat 'powershell -Command "Start-Process PowerShell -ArgumentList ''iisreset /restart'' -Verb RunAs"'
+    }
+}
+
     }
     post {
         success {
