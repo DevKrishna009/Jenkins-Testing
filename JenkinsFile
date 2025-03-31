@@ -19,9 +19,10 @@ pipeline {
        stage('Restart IIS') {
     steps {
         echo 'Restarting IIS...'
-        bat 'powershell -Command "Start-Process PowerShell -ArgumentList ''iisreset /restart'' -Verb RunAs"'
+        bat 'powershell -Command "Start-Process PowerShell -ArgumentList \\"iisreset /restart\\" -Verb RunAs"'
     }
 }
+
 
     }
     post {
