@@ -1,6 +1,12 @@
-stage('Debug Workspace') {
-    steps {
-        echo 'Checking files in workspace...'
-        bat 'dir /s /b'
+pipeline {
+    agent any
+
+    stages {
+        stage('Debug Workspace') {
+            steps {
+                echo 'Checking files in workspace...'
+                bat 'dir /s /b'
+            }
+        }
     }
 }
